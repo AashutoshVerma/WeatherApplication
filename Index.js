@@ -1,6 +1,6 @@
 angular
   .module("myApp", [])
-  .controller("myController", function ($scope, $http) {
+  .controller("myController", function ($scope, $http, $window) {
     $scope.newCity = null;
     $scope.setSearch = function () {
       $scope.city = $scope.search;
@@ -49,7 +49,7 @@ angular
 
             // Replace with your API key
             // var apiKey = process.env.API_TOKEN;
-            var apiKey = process.env.API_TOKEN;
+            var apiKey = $window._env.API_TOKEN;
 
             // Replace with your desired city and country code
             // var city = $scope.city;
