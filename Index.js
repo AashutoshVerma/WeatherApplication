@@ -48,12 +48,8 @@ angular
             $scope.currentLocation = $scope.city;
 
             // Replace with your API key
-<<<<<<< HEAD
             // var apiKey = process.env.API_TOKEN;
-            var apiKey = "9b95396a4e71970a331f25e34f65fb4a";
-=======
-            var apiKey ="9b95396a4e71970a331f25e34f65fb4a";
->>>>>>> 00c0baefc8b6d8452f4e84a1e879e23959850f50
+            var apiKey = process.env.API_TOKEN;
 
             // Replace with your desired city and country code
             // var city = $scope.city;
