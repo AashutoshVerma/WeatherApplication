@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="Style.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="Index.js"></script>
+    <title>Weather Forecast Application</title>
+  </head>
+  <body>
+    <div class="getMargin container" ng-app="myApp" ng-controller="myController">
+      <div class="header getMargin glassCardEffect">
+        <div class="logo"><img width="200" height="200" src="https://img.icons8.com/plasticine/200/apple-weather.png" alt="apple-weather"/></div>
+        <div class="getMargin appName">
+          <span>Weather Forecast Application</span>
+        </div>
+        <div class="getMargin ">
+          <div class="search">
+            <input type="text" placeholder="Search City" ng-model="search" >
+            <img width="20" height="20" ng-click = "setSearch()" src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png" alt="search--v1"/>   
+
+          </div>
+        </div>
+      </div>
+      <div class="top getMargin">
+        <div class="getMargin topLeft glassCardEffect">
+          <div class="getMargin time" >{{currentTime}}
+        </div>
+        <div class="dayDate">
+          <span class="getMargin"><img width="25" height="25" src="https://img.icons8.com/ios-filled/50/ffffff/calendar-26.png" alt="calendar-26"/> {{currentDay}}</span>
+        </div>
+        <div class="cityCountry">
+          <span class="getMargin"><img width="25" height="25" src="https://img.icons8.com/ios-filled/50/ffffff/marker.png" alt="marker"/>   {{currentLocation}}</span>
+        </div>
+        <div class="temp">
+          <div class="minTemp">
+            <span class="minTemp getMargin"> Min Temp : {{tempMin}}&deg;C</span>
+          </div>
+          <div class="maxTemp">
+            <span class="maxTemp getMargin">Max Temp : {{tempMax}}&deg;C</span>
+          </div>
+        </div>
+      </div>
+      <div class="getMargin topRight glassCardEffect">
+        <div class="weatherIcon getMargin">
+          <span class="weatherIconLogo" ><img src="{{weatherIconUrl}}" alt=""></span>
+        <p class="weatherType">{{weatherType}}</p>
+        </div>
+        <div class="subRightBox ">
+            <div class="tempBig getMargin">
+                <span class="tempBig"><img width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/ffffff/thermometer--v3.png" alt="thermometer--v3"/>{{temperature}}&deg;C</span>
+            </div>
+            <div class="feelsLike getMargin">
+                <span class="feelsLike">Feels Like {{feelsLike}}&deg;C</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="tempInfo glassCardEffect">
+      <div class="top3info">
+        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/pressure.png" alt="pressure"/><div class="">{{pressure}} hPa</div></div>
+        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/humidity.png" alt="humidity"/><div class=""><div class="">{{humidity}} %</div></div></div>
+        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/wind--v1.png" alt="wind--v1"/><div class="">{{windSpeed}} m/s</div></div>
+      </div>
+      <div class="bottom3info">
+        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/ffffff/sunrise.png" alt="sunrise"/><div class="">{{sunrise}}</div></div>
+        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/ffffff/sunset.png" alt="sunset"/><div class="">{{sunset}}</div></div>
+        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/water-wind-turbine.png" alt="water-wind-turbine"/><div class="">{{windDegree}} deg</div></div>
+      </div>
+    </div>
+  </body>
+</html>
