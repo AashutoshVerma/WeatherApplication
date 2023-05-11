@@ -9,8 +9,66 @@
     <script src="Index.js"></script>
     <title>Weather Forecast Application</title>
   </head>
-  <body>
-    <div class="getMargin container" ng-app="myApp" ng-controller="myController">
+  <body ng-app="myApp" ng-controller="myController">
+    <div class="loginContainer">
+      <div class="mainDesc glassCardEffect">
+        <div class="mainLogo"><img width="200" height="200" src="https://img.icons8.com/plasticine/200/apple-weather.png" alt="apple-weather"/></div>
+        <div class="mainTitle">Weather Application</div>
+        <div class="mainInfo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae corrupti nostrum ut deserunt numquam rem in suscipit reiciendis fugiat perspiciatis quasi, harum corporis aliquam itaque cupiditate? Ullam qui animi suscipit?</div>
+      </div>
+      <div class="loginCreateContainer">
+        <div class="option">
+          <ul>
+            <li class="optionElement" id="loginOption" value="">Login</li>
+            
+            <li class="optionElement" id="createOption" value="">Create</li>
+           
+          </ul>
+        </div>
+        
+        <div class="loginElement active">
+          <form action="">
+
+            <input type="text" class="inputText" placeholder="Username" id="username">
+            <input type="text" placeholder="Password" id="password">
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        
+        
+        <div class="createElement">
+          <form action="">
+            <input type="text" placeholder="Username" id="username">
+            <input type="text" placeholder="Password" id="password">
+            <input type="text" placeholder="Confirm Password" id="password">
+            <button type="submit" >Login</button>
+            
+          </form>
+        </div> 
+        <script>
+          const myLoginOption = document.getElementById("loginOption");
+          const myLoginDiv = document.querySelector(".loginElement");
+          const myDiv = document.querySelector(".createElement");
+
+    
+          myLoginOption.addEventListener("click", function () {
+            console.log("Login option clicked");
+
+            myLoginDiv.classList.toggle("active");
+            myDiv.classList.remove("active");
+          });
+          </script>
+          <script>
+          const myButton = document.getElementById("createOption");
+    
+          myButton.addEventListener("click", function () {
+            myDiv.classList.toggle("active");
+            myLoginDiv.classList.remove("active");
+          })
+          </script>
+      </div>
+    </div>
+    <div class="getMargin container" >
       <div class="header getMargin glassCardEffect">
         <div class="logo"><img width="200" height="200" src="https://img.icons8.com/plasticine/200/apple-weather.png" alt="apple-weather"/></div>
         <div class="getMargin appName">

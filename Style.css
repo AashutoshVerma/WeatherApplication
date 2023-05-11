@@ -19,6 +19,7 @@ body {
 }
 
 .container {
+  /* display: none; */
   width: 80%;
   height: 700px;
   margin: 5% auto;
@@ -27,6 +28,136 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
   border-radius: 1rem;
+}
+
+.loginContainer {
+  width: 80%;
+  height: 700px;
+  margin: 5% auto;
+  /* background-color: #4158d0; */
+  background-image: url("./clouds.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* backface-visibility: visible; */
+  border-radius: 1rem;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  display: none;
+}
+
+.mainDesc {
+  width: 50%;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.option {
+  display: flex;
+  /* align-items: center; */
+  gap: 2rem;
+  justify-content: center;
+  margin: 20px;
+  font-size: 1.5rem;
+}
+.option ul {
+  display: flex;
+  font-size: 1.5rem;
+
+  list-style: none;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.optionElement {
+  border: 2px solid white;
+
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.4rem;
+}
+
+.createElement {
+  /* display: flexbox; */
+  display: none;
+  /* border: 2px solid white; */
+  border-radius: 1rem;
+  flex-direction: column;
+
+  padding: 2rem 2rem;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.createElement form input {
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+.createElement form button {
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  color: black;
+  padding: 0.5rem 1rem;
+}
+.createElement form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.loginElement {
+  /* display: flex; */
+  display: none;
+  /* border: 2px solid white; */
+  border-radius: 1rem;
+  flex-direction: column;
+  width: 50%;
+  font-size: 1.5rem;
+  margin: auto;
+  color: black;
+  /* margin-top: 10rem; */
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+}
+.loginElement form input {
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+.loginElement form button {
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  color: black;
+  padding: 0.5rem 1rem;
+}
+.loginElement form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mainInfo {
+  text-align: center;
+  width: 30rem;
+}
+.loginCreateContainer {
+  width: 50%;
+  margin: auto;
+  height: 50%;
+  /* border: 2px solid white; */
+  font-size: 1.5rem;
 }
 
 .header {
@@ -196,4 +327,27 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+}
+/* .createElement.active {
+  display: flex;
+}
+.loginElement.active {
+  display: flexbox;
+} */
+.active {
+  display: flex;
+}
+.inactive {
+  display: none;
+}
+
+.mainTitle {
+  font-size: 3rem;
+  font-weight: 900;
+  padding: 1rem 2rem;
+}
+.mainInfo {
+  font-size: 1.5rem;
+  /* font-weight: 900; */
+  padding: 1rem 2rem;
 }

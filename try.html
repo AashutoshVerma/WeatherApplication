@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .myDiv {
+        display: none;
+      }
 
+      .myDiv.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="myButton" value="">Click me!</button>
+    <div class="myDiv">This is the div that will become visible</div>
+    <script>
+      const myButton = document.getElementById("myButton");
+      const myDiv = document.querySelector(".myDiv");
+
+      myButton.addEventListener("click", function () {
+        myDiv.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
