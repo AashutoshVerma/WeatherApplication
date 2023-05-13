@@ -44,9 +44,15 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  display: none;
+  /* display: none; */
 }
 
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
 .mainDesc {
   width: 50%;
   border: 2px solid white;
@@ -98,6 +104,7 @@ body {
   font-size: 1.5rem;
   text-align: center;
   border-radius: 0.4rem;
+  color: black;
 }
 .createElement form button {
   font-size: 1.5rem;
@@ -114,21 +121,21 @@ body {
   gap: 1rem;
 }
 .loginElement {
-  /* display: flex; */
-  display: none;
+  display: flex;
   /* border: 2px solid white; */
   border-radius: 1rem;
   flex-direction: column;
   width: 50%;
   font-size: 1.5rem;
   margin: auto;
-  color: black;
   /* margin-top: 10rem; */
   height: 50%;
   align-items: center;
   justify-content: center;
+  display: none;
 }
 .loginElement form input {
+  color: black;
   font-size: 1.5rem;
   text-align: center;
   border-radius: 0.4rem;
@@ -167,6 +174,10 @@ body {
   align-items: center;
   padding: 1rem 0.5rem;
   font-size: 2rem;
+}
+
+.try {
+  border: 4px solid black;
 }
 
 .search {

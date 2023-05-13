@@ -6,127 +6,245 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+
     <script src="Index.js"></script>
     <title>Weather Forecast Application</title>
   </head>
   <body ng-app="myApp" ng-controller="myController">
-    <div class="loginContainer">
+      <div class="getMargin container" ng-class="{'hide':notLoggedIn}">
+        <div class="header getMargin glassCardEffect">
+          <div class="logo">
+            <img
+              width="200"
+              height="200"
+              src="https://img.icons8.com/plasticine/200/apple-weather.png"
+              alt="apple-weather"
+            />
+          </div>
+          <div class="getMargin appName">
+            <span>Weather Forecast Application</span>
+          </div>
+          <div class="getMargin">
+            <div class="search">
+              <input type="text" placeholder="Search City" ng-model="search" />
+              <img
+                width="20"
+                height="20"
+                ng-click="setSearch()"
+                src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png"
+                alt="search--v1"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="top getMargin">
+          <div class="getMargin topLeft glassCardEffect">
+            <div class="getMargin time">{{currentTime}}</div>
+            <div class="dayDate">
+              <span class="getMargin"
+                ><img
+                  width="25"
+                  height="25"
+                  src="https://img.icons8.com/ios-filled/50/ffffff/calendar-26.png"
+                  alt="calendar-26"
+                />
+                {{currentDay}}</span
+              >
+            </div>
+            <div class="cityCountry">
+              <span class="getMargin"
+                ><img
+                  width="25"
+                  height="25"
+                  src="https://img.icons8.com/ios-filled/50/ffffff/marker.png"
+                  alt="marker"
+                />
+                {{currentLocation}}</span
+              >
+            </div>
+            <div class="temp">
+              <div class="minTemp">
+                <span class="minTemp getMargin">
+                  Min Temp : {{tempMin}}&deg;C</span
+                >
+              </div>
+              <div class="maxTemp">
+                <span class="maxTemp getMargin"
+                  >Max Temp : {{tempMax}}&deg;C</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="getMargin topRight glassCardEffect">
+            <div class="weatherIcon getMargin">
+              <span class="weatherIconLogo"
+                ><img src="{{weatherIconUrl}}" alt=""
+              /></span>
+              <p class="weatherType">{{weatherType}}</p>
+            </div>
+            <div class="subRightBox">
+              <div class="tempBig getMargin">
+                <span class="tempBig"
+                  ><img
+                    width="64"
+                    height="64"
+                    src="https://img.icons8.com/pastel-glyph/64/ffffff/thermometer--v3.png"
+                    alt="thermometer--v3"
+                  />{{temperature}}&deg;C</span
+                >
+              </div>
+              <div class="feelsLike getMargin">
+                <span class="feelsLike">Feels Like {{feelsLike}}&deg;C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tempInfo glassCardEffect">
+          <div class="top3info">
+            <div class="getMargin tempInfoElement">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/ffffff/pressure.png"
+                alt="pressure"
+              />
+              <div class="">{{pressure}} hPa</div>
+            </div>
+            <div class="getMargin tempInfoElement">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/ffffff/humidity.png"
+                alt="humidity"
+              />
+              <div class=""><div class="">{{humidity}} %</div></div>
+            </div>
+            <div class="getMargin tempInfoElement">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/ffffff/wind--v1.png"
+                alt="wind--v1"
+              />
+              <div class="">{{windSpeed}} m/s</div>
+            </div>
+          </div>
+          <div class="bottom3info">
+            <div class="getMargin tempInfoElement">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios-filled/50/ffffff/sunrise.png"
+                alt="sunrise"
+              />
+              <div class="">{{sunrise}}</div>
+            </div>
+            <div class="getMargin tempInfoElement">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios-filled/50/ffffff/sunset.png"
+                alt="sunset"
+              />
+              <div class="">{{sunset}}</div>
+            </div>
+            <div class="getMargin tempInfoElement">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/ffffff/water-wind-turbine.png"
+                alt="water-wind-turbine"
+              />
+              <div class="">{{windDegree}} deg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loginContainer" ng-class="{'hide':isLoggedin}">
       <div class="mainDesc glassCardEffect">
-        <div class="mainLogo"><img width="200" height="200" src="https://img.icons8.com/plasticine/200/apple-weather.png" alt="apple-weather"/></div>
+        <div class="mainLogo">
+          <img
+            width="200"
+            height="200"
+            src="https://img.icons8.com/plasticine/200/apple-weather.png"
+            alt="apple-weather"
+          />
+        </div>
         <div class="mainTitle">Weather Application</div>
-        <div class="mainInfo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae corrupti nostrum ut deserunt numquam rem in suscipit reiciendis fugiat perspiciatis quasi, harum corporis aliquam itaque cupiditate? Ullam qui animi suscipit?</div>
+        <div class="mainInfo">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+          corrupti nostrum ut deserunt numquam rem in suscipit reiciendis fugiat
+          perspiciatis quasi, harum corporis aliquam itaque cupiditate? Ullam
+          qui animi suscipit?
+        </div>
       </div>
       <div class="loginCreateContainer">
         <div class="option">
           <ul>
             <li class="optionElement" id="loginOption" value="">Login</li>
-            
+
             <li class="optionElement" id="createOption" value="">Create</li>
-           
           </ul>
         </div>
-        
-        <div class="loginElement active">
-          <form action="">
 
-            <input type="text" class="inputText" placeholder="Username" id="username">
-            <input type="text" placeholder="Password" id="password">
-            <button type="submit">Login</button>
+        <div class="loginElement active">
+          <form ng-submit="loginCheck()" ng-class="try">
+            <input
+              type="text"
+              class="inputText"
+              placeholder="Username"
+              ng-model="loginusername"
+            />
+            <input
+              type="text"
+              placeholder="Password"
+              ng-model="loginpassword"
+            />
+            <button type="submit" id="loginButton">Login</button>
           </form>
         </div>
-        
-        
+
         <div class="createElement">
           <form action="">
-            <input type="text" placeholder="Username" id="username">
-            <input type="text" placeholder="Password" id="password">
-            <input type="text" placeholder="Confirm Password" id="password">
-            <button type="submit" >Login</button>
-            
+            <input type="text" placeholder="Username" id="createusername" />
+            <input type="text" placeholder="Password" id="createpassword" />
+            <input type="text" placeholder="Confirm Password" id="password" />
+            <button type="submit" id="createButton">Create</button>
           </form>
-        </div> 
+        </div>
+        <script>
+          var loginusername = document.getElementById("loginusername");
+          var loginpassword = document.getElementById("loginpassword");
+
+          function loginCheck() {
+            console.log(loginusername.value + ":" + loginpassword.value);
+          }
+        </script>
+
         <script>
           const myLoginOption = document.getElementById("loginOption");
           const myLoginDiv = document.querySelector(".loginElement");
           const myDiv = document.querySelector(".createElement");
 
-    
           myLoginOption.addEventListener("click", function () {
             console.log("Login option clicked");
 
             myLoginDiv.classList.toggle("active");
             myDiv.classList.remove("active");
           });
-          </script>
-          <script>
+        </script>
+        <script>
           const myButton = document.getElementById("createOption");
-    
+
           myButton.addEventListener("click", function () {
             myDiv.classList.toggle("active");
             myLoginDiv.classList.remove("active");
-          })
-          </script>
+          });
+        </script>
       </div>
     </div>
-    <div class="getMargin container" >
-      <div class="header getMargin glassCardEffect">
-        <div class="logo"><img width="200" height="200" src="https://img.icons8.com/plasticine/200/apple-weather.png" alt="apple-weather"/></div>
-        <div class="getMargin appName">
-          <span>Weather Forecast Application</span>
-        </div>
-        <div class="getMargin ">
-          <div class="search">
-            <input type="text" placeholder="Search City" ng-model="search" >
-            <img width="20" height="20" ng-click = "setSearch()" src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png" alt="search--v1"/>   
-
-          </div>
-        </div>
-      </div>
-      <div class="top getMargin">
-        <div class="getMargin topLeft glassCardEffect">
-          <div class="getMargin time" >{{currentTime}}
-        </div>
-        <div class="dayDate">
-          <span class="getMargin"><img width="25" height="25" src="https://img.icons8.com/ios-filled/50/ffffff/calendar-26.png" alt="calendar-26"/> {{currentDay}}</span>
-        </div>
-        <div class="cityCountry">
-          <span class="getMargin"><img width="25" height="25" src="https://img.icons8.com/ios-filled/50/ffffff/marker.png" alt="marker"/>   {{currentLocation}}</span>
-        </div>
-        <div class="temp">
-          <div class="minTemp">
-            <span class="minTemp getMargin"> Min Temp : {{tempMin}}&deg;C</span>
-          </div>
-          <div class="maxTemp">
-            <span class="maxTemp getMargin">Max Temp : {{tempMax}}&deg;C</span>
-          </div>
-        </div>
-      </div>
-      <div class="getMargin topRight glassCardEffect">
-        <div class="weatherIcon getMargin">
-          <span class="weatherIconLogo" ><img src="{{weatherIconUrl}}" alt=""></span>
-        <p class="weatherType">{{weatherType}}</p>
-        </div>
-        <div class="subRightBox ">
-            <div class="tempBig getMargin">
-                <span class="tempBig"><img width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/ffffff/thermometer--v3.png" alt="thermometer--v3"/>{{temperature}}&deg;C</span>
-            </div>
-            <div class="feelsLike getMargin">
-                <span class="feelsLike">Feels Like {{feelsLike}}&deg;C</span>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="tempInfo glassCardEffect">
-      <div class="top3info">
-        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/pressure.png" alt="pressure"/><div class="">{{pressure}} hPa</div></div>
-        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/humidity.png" alt="humidity"/><div class=""><div class="">{{humidity}} %</div></div></div>
-        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/wind--v1.png" alt="wind--v1"/><div class="">{{windSpeed}} m/s</div></div>
-      </div>
-      <div class="bottom3info">
-        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/ffffff/sunrise.png" alt="sunrise"/><div class="">{{sunrise}}</div></div>
-        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/ffffff/sunset.png" alt="sunset"/><div class="">{{sunset}}</div></div>
-        <div class="getMargin tempInfoElement"><img width="50" height="50" src="https://img.icons8.com/ios/50/ffffff/water-wind-turbine.png" alt="water-wind-turbine"/><div class="">{{windDegree}} deg</div></div>
-      </div>
-    </div>
+    <!-- <div ng-view></div> -->
   </body>
 </html>

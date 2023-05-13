@@ -1,8 +1,11 @@
 var express = require("express");
 var mongoose = require("mongoose");
+var cors = require("cors");
 
 var app = express();
 // app.use(json());./
+
+app.use(cors());
 app.use(express.json());
 app.listen(8080, () => {
   console.log("Server Started!!");
@@ -41,16 +44,20 @@ app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
     const findUser = await user.findOne({ username });
-    console.log(findUser);
-    console.log(password + " : db : " + findUser.password);
     if (findUser) {
-      if (password === findUser.password) {
-        res.send({ status: "ok", data: findUser });
-      } else {
-        res.send({
-          status: "not Ok",
-        });
+      console.log(findUser);
+      console.log(password + " : db : " + findUser.password);
+      if (findUser) {
+        if (password === findUser.password) {
+          res.send({ status: "ok", data: findUser });
+        } else {
+          res.send({
+            status: "not Ok",
+          });
+        }
       }
+    } else {
+      res.send({ status: "User Not Found  " });
     }
   } catch (error) {
     console.log(error);
