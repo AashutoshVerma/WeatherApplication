@@ -68,8 +68,14 @@ app.post("/createUser", async (req, res) => {
   try {
     {
       const { username, password } = req.body;
-      var newUser = user.create({ username, password });
-      res.send({ status: "User Created" });
+      const findUser = await user.findOne({ username });
+      if (findUser) {
+        res.send({ status: "User Exists" });
+      } else {
+        var newUser = user.create({ username, password });
+        console.log(newUser);
+        res.send({ status: "User Created" });
+      }
     }
   } catch (error) {
     console.log(error);

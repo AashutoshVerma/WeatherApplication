@@ -5,7 +5,7 @@ app.config(function ($routeProvider) {
     controller: "myController",
   });
 });
-app.controller("myController", function ($scope, $http, $location) {
+app.controller("myController", function ($scope, $http, $location, $window) {
   $scope.newCity = null;
   $scope.notLoggedIn = true;
   $scope.setSearch = function () {
@@ -15,6 +15,23 @@ app.controller("myController", function ($scope, $http, $location) {
     console.log("new city" + $scope.newCity);
   };
 
+  $scope.createUser = function () {
+    $http({
+      method: "POST",
+      url: "http://localhost:8080/createUser",
+      data: {
+        username: $scope.createusername,
+        password: $scope.createpassword,
+      },
+    }).then(function (response) {
+      if (response.data.status == "User Exists") {
+        alert("User Exists!!");
+      } else {
+        alert("User Created Successfully.");
+        $window.location.reload();
+      }
+    });
+  };
   $scope.loginCheck = function () {
     console.log($scope.loginusername + " :" + $scope.loginpassword);
 

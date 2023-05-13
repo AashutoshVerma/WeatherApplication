@@ -207,9 +207,9 @@
         </div>
 
         <div class="createElement">
-          <form action="">
-            <input type="text" placeholder="Username" id="createusername" />
-            <input type="text" placeholder="Password" id="createpassword" />
+          <form ng-submit="createUser()">
+            <input type="text" placeholder="Username" ng-model="createusername" />
+            <input type="text" placeholder="Password" ng-model="createpassword" />
             <input type="text" placeholder="Confirm Password" id="password" />
             <button type="submit" id="createButton">Create</button>
           </form>
