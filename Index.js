@@ -1,7 +1,7 @@
 var app = angular.module("myApp", ["ngRoute"]);
 app.config(function ($routeProvider) {
   $routeProvider.when("/dashboard", {
-    templateUrl: "logihPage.html",
+    // templateUrl: "logihPage.html",
     controller: "myController",
   });
 });
@@ -13,54 +13,6 @@ app.controller("myController", function ($scope, $http, $location, $window) {
     $scope.newCity = $scope.search; // add this line
 
     console.log("new city" + $scope.newCity);
-  };
-
-  $scope.createUser = function () {
-    $http({
-      method: "POST",
-      url: "http://localhost:8080/createUser",
-      data: {
-        username: $scope.createusername,
-        password: $scope.createpassword,
-      },
-    }).then(function (response) {
-      if (response.data.status == "User Exists") {
-        alert("User Exists!!");
-      } else {
-        alert("User Created Successfully.");
-        $window.location.reload();
-      }
-    });
-  };
-  $scope.loginCheck = function () {
-    console.log($scope.loginusername + " :" + $scope.loginpassword);
-
-    $http({
-      method: "POST",
-      url: "http://localhost:8080/login",
-      data: {
-        username: $scope.loginusername,
-        password: $scope.loginpassword,
-      },
-    }).then(
-      function successCallback(response) {
-        // Success callback code
-        console.log(response.data);
-        if (response.data.status == "ok") {
-          alert("true");
-          $scope.isLoggedin = true;
-          $scope.notLoggedIn = false;
-          console.log($scope.isLoggedIn);
-
-          $location.path("/dashboard");
-        } else {
-          alert("false");
-        }
-      },
-      function errorCallback(response) {
-        console.log(response.status);
-      }
-    );
   };
 
   $scope.currentTime = new Date().toLocaleTimeString([], {
@@ -147,16 +99,62 @@ app.controller("myController", function ($scope, $http, $location, $window) {
           );
         });
       });
-      $scope.currentTime = new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-      $scope.currentDateTime = new Date().toLocaleString([], {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-      });
     });
   }, 5000);
+
+  $scope.createUser = function () {
+    if ($scope.createpassword != $scope.confirmpassword) {
+      alert("Password and Confirm Password should be the same ");
+    } else {
+      $http({
+        method: "POST",
+        url: "http://localhost:8080/createUser",
+        data: {
+          username: $scope.createusername,
+          password: $scope.createpassword,
+          time: $scope.currentTime + " , " + $scope.currentDay,
+          location: $scope.currentLocation,
+        },
+      }).then(function (response) {
+        if (response.data.status == "User Exists") {
+          alert("User Exists!!");
+        } else {
+          alert("User Created Successfully.");
+          $window.location.reload();
+        }
+      });
+    }
+  };
+  $scope.loginCheck = function () {
+    console.log($scope.loginusername + " :" + $scope.loginpassword);
+
+    $http({
+      method: "POST",
+      url: "http://localhost:8080/login",
+      data: {
+        username: $scope.loginusername,
+        password: $scope.loginpassword,
+        time: $scope.currentTime + " , " + $scope.currentDay,
+        location: $scope.currentLocation,
+      },
+    }).then(
+      function successCallback(response) {
+        // Success callback code
+        console.log(response.data);
+        if (response.data.status == "ok") {
+          alert("Login Successfull");
+          $scope.isLoggedin = true;
+          $scope.notLoggedIn = false;
+          console.log($scope.isLoggedIn);
+
+          $location.path("/dashboard");
+        } else {
+          alert("Invalid Credentials");
+        }
+      },
+      function errorCallback(response) {
+        console.log(response.status);
+      }
+    );
+  };
 });

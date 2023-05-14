@@ -22,18 +22,30 @@ mongoose
     console.log(err);
   });
 
-const UserSchema = new mongoose.Schema(
+const loginUserSchema = new mongoose.Schema(
   {
+    time: String,
     username: String,
     password: String,
+    location: String,
   },
-  { collection: "Users" }
+  { collection: "loginUsers" }
+);
+const createUserSchema = new mongoose.Schema(
+  {
+    time: String,
+    username: String,
+    password: String,
+    location: String,
+  },
+  { collection: "createUsers" }
 );
 
-var user = mongoose.model("Users", UserSchema);
+var loginuser = mongoose.model("loginUsers", loginUserSchema);
+var createuser = mongoose.model("createUsers", createUserSchema);
 app.get("/getusers", async (req, res) => {
   try {
-    const data = await user.find({});
+    const data = await createuser.find({});
     res.send(JSON.stringify(data));
   } catch (error) {
     console.log(error);
@@ -42,13 +54,14 @@ app.get("/getusers", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const findUser = await user.findOne({ username });
+    const { time, username, location, password } = req.body;
+    const findUser = await createuser.findOne({ username });
     if (findUser) {
       console.log(findUser);
       console.log(password + " : db : " + findUser.password);
       if (findUser) {
         if (password === findUser.password) {
+          loginuser.create({ time, username, location });
           res.send({ status: "ok", data: findUser });
         } else {
           res.send({
@@ -67,12 +80,12 @@ app.post("/login", async (req, res) => {
 app.post("/createUser", async (req, res) => {
   try {
     {
-      const { username, password } = req.body;
-      const findUser = await user.findOne({ username });
+      const { username, password, time, location } = req.body;
+      const findUser = await createuser.findOne({ username });
       if (findUser) {
         res.send({ status: "User Exists" });
       } else {
-        var newUser = user.create({ username, password });
+        var newUser = createuser.create({ time, username, password, location });
         console.log(newUser);
         res.send({ status: "User Created" });
       }
